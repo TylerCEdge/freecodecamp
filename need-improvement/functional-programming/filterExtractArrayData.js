@@ -136,7 +136,7 @@ var watchList = [
 var filteredList = watchList
   .map((item) => ({
     title: item['Title'],
-    rating: parseFloat(item['imdbRating']),
+    rating: parseFloat(item['imdbRating']), // chaining .toFixed(1) resolves this but why is it necessary here and not on line 162?
   }))
   .filter((movie) => movie.rating >= 8.0);
 

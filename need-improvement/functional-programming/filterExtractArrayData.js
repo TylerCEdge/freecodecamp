@@ -1,4 +1,11 @@
-// The global variable
+// ARRAY DATA FROM THE FCC LESSON
+// @@@ COLLAPSE LINE 9 TO IMPROVE READABILITY ARRAY IS ONLY PROVIDED FOR ADDITIONAL CONTEXT @@@
+
+// FCC LESSON URL
+// ------------------------------------------------------
+('https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/functional-programming/use-the-filter-method-to-extract-data-from-an-array');
+// ------------------------------------------------------
+
 var watchList = [
   {
     Title: 'Inception',
@@ -124,7 +131,7 @@ var watchList = [
   },
 ];
 
-// Only change code below this line
+// ------------------------  MY ANSWER ------------------------------
 
 var filteredList = watchList
   .map((item) => ({
@@ -133,8 +140,16 @@ var filteredList = watchList
   }))
   .filter((movie) => movie.rating >= 8.0);
 
-// Mine doesn't include the decimal point for the Dark Knight.
-// I would like to understand why.
+// CONSOLE LOG
+
+[
+  { title: 'Inception', rating: 8.8 },
+  { title: 'Interstellar', rating: 8.6 },
+  { title: 'The Dark Knight', rating: 9 },
+  { title: 'Batman Begins', rating: 8.3 },
+];
+
+// -------------------------  FREECODECAMP SOLUTION -----------------------------
 
 var filteredList = watchList
   .map((movie) => {
@@ -147,6 +162,54 @@ var filteredList = watchList
     return parseFloat(movie.rating);
   });
 
-// Only change code above this line
+// CONSOLE LOG
+
+[
+  { title: 'Inception', rating: '8.8' },
+  { title: 'Interstellar', rating: '8.6' },
+  { title: 'The Dark Knight', rating: '9.0' },
+  { title: 'Batman Begins', rating: '8.3' },
+];
+
+// ------------------------------------------------------
 
 console.log(filteredList);
+
+// --------------------------  FCC URL TO ACCESS THE EXERCISE ----------------------------
+
+('https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/functional-programming/use-the-filter-method-to-extract-data-from-an-array');
+
+// -------------------------  ANSWERS FROM JAY -----------------------------
+
+// JAY: .map returns values that compute a new array
+
+// JAY: so you using parseFloat in .map is mutating the array
+
+// JAY: FCC’s solution is using parseFloat in the .filter which makes no changes to the data in the array, it just filters on the condition provided in .filter’s callback function
+
+// ME: So IF I were to use it.  Filter is the optimal place to use it?  Is the mutation why .toFixed(1) is required to yield the same result as using it in .filter without that addition?
+
+// JAY: yes
+
+// JAY: there are lots of small reasons why that’s the case
+
+// JAY: you can cause a mutation in .filter as well
+
+// JAY: it’s really about understanding that objects are “pass by reference”
+
+// JAY: so when you change the value of an object property in a .map you are changing it everywhere that it is referenced
+
+// ------------------------- MY RUBBER DUCK SELF TALK IN ATTEMPT TO INVOKE A LIGHT BULB MOMENT -----------------------------
+
+// The parseFloat() function parses an argument (converting it to a string first if needed) and returns a floating point number.  So ...
+
+// My solution technically works, however, it takes the string value inside imdbRating ( line 77 ) ...
+// utilizes parseFloat to convert the string to a floating point number ( line 139 ) ...
+// and outputs an array of objects containing title: string, rating: floating point number ( lines 146-149 ) ...
+// except the floating point number for The Dark Knight's rating is 9 instead of 9.0 ( line 148 ) whereas the other 3 titles returned hold a value of 1 past the decimal point ( line 146, 147, 149 ) ...
+
+// ------------------------- MY QUESTION(S) -----------------------------
+
+// Why does parseFloat(item['imdbRating']) ( line 139 ) !== parseFloat(movie.rating) ( line 162 ) ???
+
+//

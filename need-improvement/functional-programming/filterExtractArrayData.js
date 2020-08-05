@@ -212,4 +212,4 @@ console.log(filteredList);
 
 // Why does parseFloat(item['imdbRating']) ( line 139 ) !== parseFloat(movie.rating) ( line 162 ) ???
 
-//
+// NOT DONE WITH THIS IF IT FEELS UNFINISHED ITS BECAUSE IT IS (08/04/2020 8:20PM)
